@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from adjustText import adjust_text
+
 from colormath.color_objects import sRGBColor, XYZColor, LabColor
 from colormath.color_conversions import convert_color
 
@@ -22,7 +22,7 @@ def Conv_lab_rgb (Value_lab):
     return Value_rgb
 
 
-df = pd.read_excel('0419_combined_biodyes.xlsx', header=0)
+df = pd.read_excel('combined_biodyes.xlsx', header=0)
 
 df_name = df.values[0:, 1]
 val_idx = df.values[0:, 0]
@@ -65,61 +65,7 @@ for ix in range(val_spec_norm.shape[0]):
                 ax.annotate('...', (cl_x, cl_y), fontsize = 7)
                 break
                 
-            
-
-    
-
-    
- 
-
-        # while True:
-            
-        #     cl_x = cl_x + 0.25
-        #     cnt += 1
-        #     if cnt > 2:
-        #         cl_x = cl_x - 0.25 * 3
-        #         cl_y = cl_y - 0.25
-        #         #cnt = 0
-        #     if cnt >= 5 and (cl_x, cl_y) not in texts:
-        #         ax.annotate("...", (cl_x, cl_y), fontsize = 7)
-        #         texts.append((cl_x, cl_y))
-        #         break    
-        #     if (cl_x, cl_y) not in texts:
-        #         ax.annotate(ix, (cl_x, cl_y), fontsize = 7)
-        #         texts.append((cl_x, cl_y))
-        #         break
- 
-
-        
-        
-        
-
-
-
-        
-
-
-    
-#print(texts)
-#print(np.shape(val_spec_norm))
-#adjust_text(texts)
-
-
-    
-
 ax.set_title('Clustering result by 2D SOM')  
 plt.xlabel('X.neurons')   
 plt.ylabel('Y.neurons')  
-# plt.xticks(range(14))
-# plt.yticks(range(10))
-#plt.ylim((0, 30))
-#plt.xlim((0, 20))
 plt.show()
-
-
-
-
-#sc = plt.scatter(x = clusters[:,1], y = clusters[:,0], alpha = 1, c = val_rgb[:]/255)
-#for cnt, c in enumerate(clusters):
-   
-#    plt.scatter(x = c[1], y = c[0], alpha = 1, c = np.array([val_rgb[cnt, :]/255]))
