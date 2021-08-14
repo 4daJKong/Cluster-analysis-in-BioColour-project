@@ -1,0 +1,1 @@
+We experiment two-dimensional SOM which was applied for analyzing spectra data of bio-dyed textiles. Without dimension reduction, we use full original reflectance vectors as input after normalization and test the performance of 2D SOMs with different map sizes and evaluate the quality by DBI, SIL measures and quantization error.
