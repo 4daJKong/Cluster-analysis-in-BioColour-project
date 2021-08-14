@@ -2,8 +2,7 @@
 import numpy as np
 import pandas as pd
 import colour
-from sklearn.datasets import load_digits
-from sklearn.datasets import fetch_mldata
+
 from collections import OrderedDict
 from GHSOM import GHSOM
 from matplotlib import pyplot as plt
@@ -59,24 +58,17 @@ def __plot_child_with_labels(e, gmap, level, data, labels, colours, associations
 
 
 def interactive_plot_with_labels(gmap, dataset, labels, colours, num='root', level=1):
-    # colors = ["#E52B50", "#FFBF00", "#4B0082", "#FBCEB1", "#7FFFD4",
-    #           "#007FFF", "#00FF00", "#9966CC", "#CD7F32", "#89CFF0"]
-    #sizes = np.arange(0, 60, 6) + 0.5
+
 
     mapping = [[list() for _ in range(gmap.map_shape()[1])] for _ in range(gmap.map_shape()[0])]
-    #print(mapping)
+
     _num = "level {} -- parent pos {}".format(level, num)
     fig, ax = plt.subplots(num=_num)
 
-    # temp_gmap = gmap
-    # map_row = temp_gmap.shape[0]
-    # map_col = temp_gmap.shape[1]
-    # ax.set_xlim((0, map_row + 1))
-    # ax.set_ylim((0, map_col + 1))
 
     #ax.imshow(__gmap_to_matrix(gmap.weights_map), cmap='bone_r', interpolation='sinc')
     fig.canvas.mpl_connect('button_press_event', lambda event: __plot_child_with_labels(event, gmap, level, dataset, labels,colours, mapping))
-    #plt.axis('off')
+    
 
     cluster = []
     for idx in range(labels.shape[0]):
@@ -96,36 +88,7 @@ def interactive_plot_with_labels(gmap, dataset, labels, colours, num='root', lev
     plt.yticks([0.375,1.375], ['0','1'])  
     plt.xticks([0.375,1.375], ['0','1'])  
   
-    '''
-    annot = ax.annotate("", xy=(0,0), xytext=(20,20),textcoords="offset points",
-                    bbox=dict(boxstyle="round", fc="w"),
-                    arrowprops=dict(arrowstyle="->"))
-    annot.set_visible(False)
-
-    def update_annot(ind):
-
-        pos = sc.get_offsets()[ind["ind"][0]]
-        annot.xy = pos
-        text = "{}".format(" ".join([labels[n] for n in ind["ind"]]))
-        annot.set_text(text)
-
-
     
-    def hover(event):
-        vis = annot.get_visible()
-        if event.inaxes == ax:
-            cont, ind = sc.contains(event)
-            if cont:
-                update_annot(ind)
-                annot.set_visible(True)
-                fig.canvas.draw_idle()
-            else:
-                if vis:
-                    annot.set_visible(False)
-                    fig.canvas.draw_idle()
-
-    fig.canvas.mpl_connect("motion_notify_event", hover)
-    '''
     ax.set_title('GHSOM_layer:'+str(level))  
     ax.set_xlabel('X.neurons')   
     ax.set_ylabel('Y.neurons')  
@@ -213,8 +176,6 @@ if __name__ == '__main__':
     print("zero_unit",zero_unit)
     print("the number of nueron units:",Neuron.cnt_num_times)
 
-    
-  
     
     interactive_plot_with_labels(zero_unit.child_map, data, val_idx, val_rgb)
     
