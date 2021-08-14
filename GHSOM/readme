@@ -1,0 +1,2 @@
+we use GHSOM for discovering potential hierarchy of data samples and reducing computational cost in neurons at the same time. 
+In the experiment, different value of depth- and breadth-controlling parameters, τ_u and τ_m were used to test the performance of GHSOM.
