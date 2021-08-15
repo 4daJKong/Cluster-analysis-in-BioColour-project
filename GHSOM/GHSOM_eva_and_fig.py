@@ -1,9 +1,6 @@
 
 import numpy as np
 import pandas as pd
-import colour
-
-from collections import OrderedDict
 from GHSOM import GHSOM
 from matplotlib import pyplot as plt
 
