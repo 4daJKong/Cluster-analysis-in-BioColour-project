@@ -2,8 +2,6 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-
-
 from sklearn.cluster import AgglomerativeClustering
 from sklearn.decomposition import PCA, pca
 from colormath.color_objects import sRGBColor, XYZColor, LabColor
@@ -27,7 +25,7 @@ def Conv_lab_rgb (Value_lab):
     Value_rgb[Value_rgb >= 255] = 255
     return Value_rgb
 
-df = pd.read_excel('dataset/0419_combined_biodyes.xlsx', header=0)
+df = pd.read_excel('combined_biodyes.xlsx', header=0)
 
 
 
@@ -67,11 +65,6 @@ def agglomerative_eva_plot(linkage,criteria):
     return x_list, score_2_list, score_3_list, score_LAB_list
 
 
-# x, dbi_2, dbi_3, dbi_lab = agglomerative_eva_plot(linkages[2], davies_bouldin_score)
-# plt.plot(x, dbi_2)
-# for a, b in zip(x, dbi_2):
-#     plt.text(a, b, b, ha='center', va='bottom', fontsize=10)
-#plt.show()
 
 for i in range (0, len(linkages)):      
     x, dbi_2, dbi_3, dbi_lab = agglomerative_eva_plot(linkages[i], davies_bouldin_score)
