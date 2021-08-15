@@ -4,8 +4,6 @@ import matplotlib.pyplot as plt
 
 from sklearn.cluster import AgglomerativeClustering
 from sklearn.decomposition import PCA, pca
-from sklearn.metrics import silhouette_score
-from sklearn.metrics import davies_bouldin_score
 
 from colormath.color_objects import sRGBColor, XYZColor, LabColor
 from colormath.color_conversions import Lab_to_LCHab, convert_color
