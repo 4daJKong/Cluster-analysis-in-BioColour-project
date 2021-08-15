@@ -2,9 +2,6 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-
-
-
 from sklearn.decomposition import PCA, pca
 from colormath.color_objects import sRGBColor, XYZColor, LabColor
 from colormath.color_conversions import convert_color
@@ -28,9 +25,7 @@ def Conv_lab_rgb (Value_lab):
     Value_rgb[Value_rgb >= 255] = 255
     return Value_rgb
 
-df = pd.read_excel('dataset/0419_combined_biodyes.xlsx', header=0)
-
-
+df = pd.read_excel('combined_biodyes.xlsx', header=0)
 
 df_name = df.values[0:, 1]
 val_idx = df.values[0:, 0]
@@ -38,15 +33,14 @@ val_lab = df.values[0:, 2:5]
 val_spec = df.values[0:,5:]
 val_rgb = Conv_lab_rgb(val_lab)
 
-
 pca_2_spec = PCA(n_components = 2).fit_transform(val_spec)
 #pca_2_spec = pd.DataFrame(pca_2_spec)
 
 pca_3_spec = PCA(n_components = 3).fit_transform(val_spec)
 #pca_3_spec = pd.DataFrame(pca_3_spec)
 
-
 '''
+#for different fuzziness parameter
 def FCM_eva_plot(criteria):
     x_list = []
     score_2_list = []
@@ -66,17 +60,6 @@ def FCM_eva_plot(criteria):
         score_LAB_list.append(round(criteria(val_spec,pred_LAB),3))
     
     return x_list, score_2_list, score_3_list, score_LAB_list
-
-
-#x, dbi_2, dbi_3, dbi_lab = FCM_eva_plot(mem[0], davies_bouldin_score)
-#print(FCM(m = 1.1, n_clusters= 8).fit(pca_2_spec).predict(pca_2_spec))
-#plt.plot(x, dbi_2)
-# for a, b in zip(x, dbi_2):
-#     plt.text(a, b, b, ha='center', va='bottom', fontsize=10)
-#plt.show()
-
-
-#for i in np.arange (1.1, 5.0, 0.1):
  
 x, dbi_2, dbi_3, dbi_lab = FCM_eva_plot(davies_bouldin_score)
 fig, (ax1, ax2) = plt.subplots(1, 2)
@@ -87,7 +70,6 @@ ax1.plot(x, dbi_lab, label = 'LAB')
 ax1.set_xlabel('fuzziness parameter')
 ax1.set_ylabel('DBI score')
 ax1.legend()
-
 
 x, sil_2, sil_3, sil_lab = FCM_eva_plot(silhouette_score)
 ax2.plot(x, sil_2, label = '2D')
@@ -100,7 +82,7 @@ plt.show()
 '''
 
 
-
+#for different number of clusters
 mems = [1.2, 2.0, 3.5]
 def FCM_eva_plot(mem, criteria):
     x_list = []
@@ -123,15 +105,6 @@ def FCM_eva_plot(mem, criteria):
     return x_list, score_2_list, score_3_list, score_LAB_list
 
 
-#x, dbi_2, dbi_3, dbi_lab = FCM_eva_plot(mem[0], davies_bouldin_score)
-#print(FCM(m = 1.1, n_clusters= 8).fit(pca_2_spec).predict(pca_2_spec))
-#plt.plot(x, dbi_2)
-# for a, b in zip(x, dbi_2):
-#     plt.text(a, b, b, ha='center', va='bottom', fontsize=10)
-#plt.show()
-
-
-#for i in np.arange (1.1, 5.0, 0.1):
 for j in range(len(mems)):
     x, dbi_2, dbi_3, dbi_lab = FCM_eva_plot(mems[j], davies_bouldin_score)
     fig, (ax1, ax2) = plt.subplots(1, 2)
