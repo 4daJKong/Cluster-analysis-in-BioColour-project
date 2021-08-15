@@ -1,23 +1,17 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import matplotlib
+
 from collections import Counter
-from mpl_toolkits.mplot3d import Axes3D
-from scipy.cluster import hierarchy
+
 from fcmeans import FCM
-from sklearn.cluster import AgglomerativeClustering
-from sklearn.metrics import davies_bouldin_score
 
 from sklearn.decomposition import PCA, pca
-from scipy.cluster.hierarchy import dendrogram
+
 
 from colormath.color_objects import sRGBColor, XYZColor, LabColor
 from colormath.color_conversions import Lab_to_LCHab, convert_color
 
-from sklearn.metrics import silhouette_score
-from sklearn.metrics import davies_bouldin_score
-from sklearn.preprocessing import label
 
 def Conv_lab_rgb (Value_lab):
     val_lab[Value_lab[:,0] > 100] = 100 
