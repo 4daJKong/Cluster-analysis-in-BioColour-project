@@ -27,9 +27,7 @@ def Conv_lab_rgb (Value_lab):
     return Value_rgb
 
 
-df = pd.read_excel('dataset/0419_combined_biodyes.xlsx', header=0)
-
-
+df = pd.read_excel('combined_biodyes.xlsx', header=0)
 
 df_name = df.values[0:, 1]
 val_idx = df.values[0:, 0]
@@ -40,8 +38,6 @@ val_rgb = Conv_lab_rgb(val_lab)
 
 pca_2_spec = PCA(n_components = 2).fit_transform(val_spec)
 pca_3_spec = PCA(n_components = 3).fit_transform(val_spec)
-
-
 
 pred_pca_2_spec = FCM(m = 1.2, n_clusters=8).fit(pca_2_spec).predict(pca_2_spec)
 pred_pca_3_spec = FCM(m = 1.2, n_clusters=8).fit(pca_3_spec).predict(pca_3_spec)
@@ -60,9 +56,6 @@ points = ax.scatter(
     marker='o',
     c = pred_pca_2_spec,
     cmap= 'Dark2')
-# for i in range(0, len(df_name)):
-#     ax.annotate(val_idx[i], tuple(pca_2_spec.values[i]), ha = "center", fontsize = 4)
-#plt.savefig('aggglo_pca.png', dpi = 200) 
 handles, _ = points.legend_elements()
 labels =sorted([f'{item}: {count}' for item, count in Counter(pred_pca_2_spec).items()])
 ax.legend(handles, labels, loc = "lower right",title = 'clusters')  
@@ -124,39 +117,6 @@ ax.legend(handles, labels, loc = "lower right",title = 'clusters')
 plt.show()
 '''
 
-'''
-#subplots
-df_val_pca_3 = pd.DataFrame({'1st component':pca_3_spec[:,0].astype(np.float),
-     '2nd component':pca_3_spec[:,1].astype(np.float),
-     '3rd component':pca_3_spec[:,2].astype(np.float)})
-
-
-df_val_lab = pd.DataFrame({'L':val_lab[:,0].astype(np.float),
-     'A':val_lab[:,1].astype(np.float),
-     'B':val_lab[:,2].astype(np.float)})
-
-fig = pd.plotting.scatter_matrix(
-    df_val_lab,  
-    #df_val_pca_3,
-    s = 15,
-    marker = '.',
-    
-    c = pred_LAB,
-    #c = pred_pca_3_spec,
-    
-    cmap = 'Dark2'
-    )
-handles = [plt.plot([],[], ls="", marker="o", \
-                    markersize=np.sqrt(16))[0] for i in range(8)]
-labels = sorted([f'{item}: {count}' for item, count in Counter(pred_LAB).items()])
-plt.legend(handles, labels, loc=(1.02,0), title = 'clusters')
-
-plt.suptitle('Clusters by FCM in LAB space')
-#plt.suptitle('Clusters by FCM in 3D space after PCA')
-#plt.savefig('C:/Users/WinstonLi/Desktop/0707_clustermethod\PCA_pair.png', dpi = 250) 
-plt.show()
-'''
-
 
 '''
 #3d PCA with 2D projection
@@ -206,17 +166,13 @@ ax4.scatter(pca_3_spec[:,1],
         cmap = 'Dark2')
 ax4.set_xlabel('Second Component')
 
-
 handles, _ = points.legend_elements()
 labels =sorted([f'{item}: {count}' for item, count in Counter(pred_pca_3_spec).items()])
 fig.legend(handles, labels, loc = "lower right",title = 'clusters')  
 fig.suptitle('Clusters by FCM in 3D space after PCA')
 
-
 plt.show()
 '''
-
-
 
 #3d LAB with 2D projection
 val_lab_x, val_lab_y,val_lab_z = val_lab[:,0], val_lab[:,1], val_lab[:,2]
@@ -256,8 +212,6 @@ ax3.scatter(val_lab_x,
 ax3.set_xlabel('L')
 ax3.set_ylabel('B')
 
-
-
 ax4 = fig.add_subplot(2,2,4)
 ax4.scatter(val_lab_y, 
         val_lab_z,
@@ -267,11 +221,9 @@ ax4.scatter(val_lab_y,
         cmap = 'Dark2')
 ax4.set_xlabel('A')
 
-
 handles, _ = points.legend_elements()
 labels =sorted([f'{item}: {count}' for item, count in Counter(pred_LAB).items()])
 fig.legend(handles, labels, loc = "lower right",title = 'clusters')  
 fig.suptitle('Clusters by FCM in LAB color space')
-
 
 plt.show()
