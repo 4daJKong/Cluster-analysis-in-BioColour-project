@@ -4,12 +4,19 @@ we apply common unsupervised learning methods to discover hidden clusters emergi
 In detail, we use agglomerative clustering, Fuzzy C-means, OPTICS as well as a well-known artificial neural network (ANN), namely self-organizing maps (SOM), resulting in an investigation that combines data visualization and cluster analysis.
 
 Requirements:
+
 Software	Version
+
 Python	3.7.0
+
 NumPy	1.17.2
+
 pandas	1.0.4
+
 matplotlib	3.2.1
+
 scikit-learn	0.21.3
+
 colormath	3.0.0
 
 
