@@ -1,0 +1,2 @@
+We focus on the evaluation results of agglomerative method. The results show the values of DBI and SIL under different input, linkage function and preset number of clusters. 
+Furthermore, we choose one of clustering results as visualization example when considering 2D, 3D principal components and LAB components from spectra as input and average linkage, 8 clusters as parameters.
