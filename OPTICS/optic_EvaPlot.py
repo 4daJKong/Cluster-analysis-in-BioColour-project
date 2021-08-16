@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 from sklearn.cluster import OPTICS
 
-from sklearn.decomposition import PCA, pca
+from sklearn.decomposition import PCA
 from colormath.color_objects import sRGBColor, XYZColor, LabColor
 from colormath.color_conversions import convert_color
 
@@ -27,7 +27,7 @@ def Conv_lab_rgb (Value_lab):
     Value_rgb[Value_rgb >= 255] = 255
     return Value_rgb
 
-df = pd.read_excel('dataset/0419_combined_biodyes.xlsx', header=0)
+df = pd.read_excel('combined_biodyes.xlsx', header=0)
 
 
 
@@ -37,18 +37,8 @@ val_lab = df.values[0:, 2:5]
 val_spec = df.values[0:,5:]
 val_rgb = Conv_lab_rgb(val_lab)
 
-
-
-
 pca_2_spec = PCA(n_components = 2).fit_transform(val_spec)
-#pca_2_spec = pd.DataFrame(pca_2_spec)
-#print(np.linalg.norm(pca_2_spec[0,:] - pca_2_spec[1,:]))
 pca_3_spec = PCA(n_components = 3).fit_transform(val_spec)
-#pca_3_spec = pd.DataFrame(pca_3_spec)
-
-
-
-
 
 def FCM_eva_plot(criteria):
     x_list = []
@@ -85,35 +75,7 @@ def FCM_eva_plot(criteria):
     return x_list, score_2_list, score_3_list, score_LAB_list
 
 
-#x, dbi_2, dbi_3, dbi_lab = FCM_eva_plot(mem[0], davies_bouldin_score)
-#print(FCM(m = 1.1, n_clusters= 8).fit(pca_2_spec).predict(pca_2_spec))
-#plt.plot(x, dbi_2)
-# for a, b in zip(x, dbi_2):
-#     plt.text(a, b, b, ha='center', va='bottom', fontsize=10)
-#plt.show()
 
-
-'''
-x, dbi_2, dbi_3, dbi_lab = FCM_eva_plot(davies_bouldin_score)
-fig, ax1 = plt.subplots()
-ax1.set_title('Clustering result of OPTICS')
-ax1.bar([i - 0.25 for i in x], dbi_2, label = '2D', width = 0.25)
-ax1.bar(x, dbi_3, label = '3D',  width = 0.25)
-ax1.bar([i + 0.25 for i in x], dbi_lab, label = 'LAB',  width = 0.25)
-ax1.set_xlabel('Minpts:minimum number of points in ε-neighborhood')
-ax1.set_ylabel('corresponding number of clusters')
-# for i in range(0, len(x)):
-#     ax1.text(x[i] - 0.4, dbi_2[i], str(dbi_2[i]), fontsize = 8)
-#     ax1.text(x[i] - 0.15, dbi_3[i], str(dbi_3[i]), fontsize = 8)
-#     ax1.text(x[i] + 0.1, dbi_lab[i], str(dbi_lab[i]), fontsize = 8)
-for i in range(len(x)):
-    plt.annotate(f'{dbi_2[i]}\n', xy=(x[i] - 0.25, dbi_2[i]), ha='center', va='center', fontsize = 9)
-    plt.annotate(f'{dbi_3[i]}\n', xy=(x[i] , dbi_3[i]), ha='center', va='center', fontsize = 9)
-    plt.annotate(f'{dbi_lab[i]}\n', xy=(x[i] + 0.25, dbi_lab[i]), ha='center', va='center', fontsize = 9)
-ax1.legend()
-plt.xticks(x)
-plt.show()   
-'''
 
 
 #x:Minpts
