@@ -1,0 +1,1 @@
+In order to detect possible non-spherical shape and different density clusters, we also experimented with the OPTICS algorithm for cluster analysis. We mainly explore the influence of different distance of ε-neighborhood, Eps and minimum number of points in Eps (Minpts) on the OPTICS. 
