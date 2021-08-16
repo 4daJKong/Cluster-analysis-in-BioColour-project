@@ -1,2 +1,1 @@
-We evaluate he evaluation results obtained with FCM with various sets of parameters.
-By the scores of DBI and SIL in two-dimensional, three-dimensional data space, we observe the influence of different fuzziness parameter m and the number of clusters. 
+We evaluate he evaluation results obtained with FCM with various sets of parameters. By the scores of DBI and SIL in two-dimensional, three-dimensional data space, we observe the influence of different fuzziness parameter m and the number of clusters. 
