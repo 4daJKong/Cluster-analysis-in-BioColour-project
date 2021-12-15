@@ -4,6 +4,8 @@ Natural compounds such as biological colorants (biocolorants) have long been emp
 
 As one part of the [BioColour consortium project](https://biocolour.fi/en/frontpage), our goal in this research is to take advantage of unsupervised learning for cluster analysis, to discover possible clusters of bio-dyed textile in the absence of ground truth labels or other knowledge of expert domain. This work aims to apply different approaches for unsupervised learning. Specifically, we use agglomerative clustering, Fuzzy C-means, OPTICS as well as a well-known artificial neural network (ANN), namely self-organizing maps (SOM), resulting in an investigation that combines data visualization and cluster analysis. In summary, we apply AI techniques to discover hidden clusters emerging among products colored using biocolorant, here specifically bio-dyed textile samples, and show the potential of clustering techniques in this application domain. (2020.1-2021.8)
 
+Thesis Link: https://erepo.uef.fi/handle/123456789/26048
+
 
 ## Requirements:
 | Software  | Version |
